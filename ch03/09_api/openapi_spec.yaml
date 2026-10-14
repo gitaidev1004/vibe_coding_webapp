@@ -1,0 +1,101 @@
+# ch03/09_api/openapi_spec.yaml
+# 게시글(post) 리소스에 대한 CRUD API 명세 예시 (OpenAPI 3.0)
+openapi: 3.0.3
+info:
+  title: 실습 프로젝트 API
+  version: "1.0"
+paths:
+  /api/posts:
+    get:
+      summary: 게시글 목록 조회
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          required: false
+      responses:
+        "200":
+          description: 조회 성공
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PostResponse"
+    post:
+      summary: 게시글 등록
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostCreateRequest"
+      responses:
+        "201":
+          description: 등록 성공
+        "400":
+          description: 요청 값 오류(제목 누락 등)
+  /api/posts/{postId}:
+    get:
+      summary: 게시글 상세 조회
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: 조회 성공
+        "404":
+          description: 게시글 없음
+    put:
+      summary: 게시글 수정
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: 수정 성공
+        "404":
+          description: 게시글 없음
+    delete:
+      summary: 게시글 삭제
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: 삭제 성공
+        "404":
+          description: 게시글 없음
+
+components:
+  schemas:
+    PostCreateRequest:
+      type: object
+      required: [title, content]
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+    PostResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        viewCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time

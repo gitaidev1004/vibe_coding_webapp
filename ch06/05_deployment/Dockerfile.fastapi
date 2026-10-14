@@ -1,0 +1,13 @@
+# ch06/05_deployment/Dockerfile.fastapi
+# FastAPI 백엔드(ch05/backend_fastapi)를 컨테이너 이미지로 빌드하기 위한 Dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

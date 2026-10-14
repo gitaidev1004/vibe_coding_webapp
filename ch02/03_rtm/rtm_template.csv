@@ -1,0 +1,4 @@
+요구사항ID,기능,유스케이스,화면,API,테스트케이스
+REQ-001,회원가입,UC-01 회원가입,SCR-01 회원가입 화면,POST /api/members,TC-001
+REQ-002,로그인,UC-02 로그인,SCR-02 로그인 화면,POST /api/auth/login,TC-002
+REQ-101,게시글 목록 조회,UC-03 게시글 목록 조회,SCR-03 게시판 목록,GET /api/posts,TC-101

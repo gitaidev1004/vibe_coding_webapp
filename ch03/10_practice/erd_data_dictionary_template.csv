@@ -1,0 +1,4 @@
+테이블명,컬럼명,자료형,PK,FK(참조 테이블),NULL 허용,설명
+member,member_id,INTEGER,Y,,N,회원 고유 식별자
+member,username,VARCHAR(50),N,,N,로그인 아이디
+member,role_id,INTEGER,N,role,N,역할 참조

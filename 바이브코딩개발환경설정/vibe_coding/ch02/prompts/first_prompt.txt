@@ -1,0 +1,4 @@
+Create a Wordpad clone in React (Vite) with bold, italic, underline,
+font size controls, and file save/open functionality.
+Use only React and Vite. Do not add any other UI library.
+Put the project in a folder named wordpad-clone.

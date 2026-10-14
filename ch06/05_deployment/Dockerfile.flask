@@ -1,0 +1,13 @@
+# ch06/05_deployment/Dockerfile.flask
+# Flask 백엔드(ch05/backend_flask)를 컨테이너 이미지로 빌드하기 위한 Dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt gunicorn
+
+COPY . .
+
+EXPOSE 5000
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app.app:app"]
